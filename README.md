@@ -6,6 +6,13 @@
 
 Создание диалогов происходит через сервис [Dialogflow](https://dialogflow.cloud.google.com/)
 
+[Пример бота TG](https://t.me/verb_game_dvmn_bot)
+![Демонстрация работы](tg_bot.gif)
+
+
+[Пример бота ВК](https://vk.com/public216230522)
+![Демонстрация работы](vk_bot.gif)
+
 ## Перед использованием
 
 - Создайте проект в [GoogleCloud](https://console.cloud.google.com/projectselector2/home/dashboard?_ga=2.102882952.945628098.1664273348-1333030587.1663324445) и получите его id
