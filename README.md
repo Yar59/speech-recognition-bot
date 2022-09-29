@@ -7,10 +7,12 @@
 Создание диалогов происходит через сервис [Dialogflow](https://dialogflow.cloud.google.com/)
 
 [Пример бота TG](https://t.me/verb_game_dvmn_bot)
+
 ![Демонстрация работы](tg_bot.gif)
 
 
 [Пример бота ВК](https://vk.com/public216230522)
+
 ![Демонстрация работы](vk_bot.gif)
 
 ## Перед использованием
