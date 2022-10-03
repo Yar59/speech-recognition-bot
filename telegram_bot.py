@@ -1,3 +1,4 @@
+from functools import partial
 import logging
 
 from environs import Env
@@ -18,28 +19,13 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def reply_message(update: Update, context: CallbackContext) -> None:
-    """Echo the user message."""
+def reply_message(project_id, update: Update, context: CallbackContext) -> None:
+    """Reply user message"""
     answer = detect_intent_texts(project_id, update.effective_chat.id, update.message.text, "ru")
     update.message.reply_text(answer.fulfillment_text)
 
 
 def main() -> None:
-    """Start the bot."""
-    updater = Updater(tg_token)
-
-    dispatcher = updater.dispatcher
-
-    dispatcher.add_handler(CommandHandler("start", start))
-
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply_message))
-
-    updater.start_polling()
-
-    updater.idle()
-
-
-if __name__ == '__main__':
     logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
     )
@@ -50,4 +36,19 @@ if __name__ == '__main__':
     tg_token = env("TG_TOKEN")
     project_id = env("PROJECT_ID")
 
+    """Start the bot."""
+    updater = Updater(tg_token)
+
+    dispatcher = updater.dispatcher
+
+    dispatcher.add_handler(CommandHandler("start", start))
+
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, partial(reply_message, project_id)))
+
+    updater.start_polling()
+
+    updater.idle()
+
+
+if __name__ == '__main__':
     main()
