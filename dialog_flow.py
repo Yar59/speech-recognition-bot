@@ -6,20 +6,19 @@ from environs import Env
 from google.cloud import dialogflow
 
 
-def detect_intent_texts(project_id, session_id, texts, language_code):
+def detect_intent_texts(project_id, session_id, text, language_code):
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
 
-    for text in texts:
-        text_input = dialogflow.TextInput(text=text, language_code=language_code)
+    text_input = dialogflow.TextInput(text=text, language_code=language_code)
 
-        query_input = dialogflow.QueryInput(text=text_input)
+    query_input = dialogflow.QueryInput(text=text_input)
 
-        response = session_client.detect_intent(
-            request={"session": session, "query_input": query_input}
-        )
-        return response.query_result
+    response = session_client.detect_intent(
+        request={"session": session, "query_input": query_input}
+    )
+    return response.query_result
 
 
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):

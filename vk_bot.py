@@ -8,7 +8,7 @@ from dialog_flow import detect_intent_texts
 
 
 def echo(event, vk_api, project_id):
-    answer = detect_intent_texts(project_id, event.user_id, [event.text], "ru")
+    answer = detect_intent_texts(project_id, event.user_id, event.text, "ru")
     if not answer.intent.is_fallback:
         vk_api.messages.send(
             user_id=event.user_id,
