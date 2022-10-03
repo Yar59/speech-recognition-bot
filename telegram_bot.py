@@ -6,6 +6,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 
 from dialog_flow import detect_intent_texts
 
+logger = logging.getLogger(__name__)
+
 
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
@@ -38,12 +40,9 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    """Enable logging"""
     logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
     )
-
-    logger = logging.getLogger(__name__)
 
     """Get environment variables"""
     env = Env()
