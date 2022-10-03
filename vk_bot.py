@@ -7,7 +7,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from dialog_flow import detect_intent_texts
 
 
-def echo(event, vk_api, project_id):
+def reply_message(event, vk_api, project_id):
     answer = detect_intent_texts(project_id, event.user_id, event.text, "ru")
     if not answer.intent.is_fallback:
         vk_api.messages.send(
@@ -27,4 +27,4 @@ if __name__ == '__main__':
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            echo(event, vk_api, project_id)
+            reply_message(event, vk_api, project_id)

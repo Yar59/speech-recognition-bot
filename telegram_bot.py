@@ -21,7 +21,7 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('АААААААААА ПОМОГИТЕЕ!')
 
 
-def echo(update: Update, context: CallbackContext) -> None:
+def reply_message(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     answer = detect_intent_texts(project_id, update.effective_chat.id, update.message.text, "ru")
     update.message.reply_text(answer.fulfillment_text)
@@ -36,7 +36,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
 
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply_message))
 
     updater.start_polling()
 
