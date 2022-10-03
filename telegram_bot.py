@@ -16,11 +16,6 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def help_command(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /help is issued."""
-    update.message.reply_text('АААААААААА ПОМОГИТЕЕ!')
-
-
 def reply_message(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     answer = detect_intent_texts(project_id, update.effective_chat.id, update.message.text, "ru")
@@ -34,7 +29,6 @@ def main() -> None:
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("help", help_command))
 
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply_message))
 
